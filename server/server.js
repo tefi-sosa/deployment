@@ -2,10 +2,13 @@ const express = require('express')
 const cors = require('cors')
 
 const path = require('path')
-
-// app.use(cors())
-// app.use(express.json())
 const app = express()
+
+app.use(cors())
+app.use(express.json())
+app.use(express.static('client'))
+app.use(`/css`, express.static(path.join(__dirname, '../client/styles.css')))
+
 
 app.get('/',function(req,res) {
   res.sendFile(path.join(__dirname, '../client/index.html'));

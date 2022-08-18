@@ -1,6 +1,15 @@
 const express = require('express')
 const cors = require('cors')
 
+require('dotenv').config()
+
+var Rollbar = require("rollbar");
+var rollbar = new Rollbar({
+  accessToken: process.env.ROLLBAR_TOKEN,
+  captureUncaught: true,
+  captureUnhandledRejections: true
+});
+
 const path = require('path')
 const app = express()
 
@@ -9,8 +18,9 @@ app.use(express.json())
 app.use(express.static('client'))
 app.use(`/css`, express.static(path.join(__dirname, '../client/styles.css')))
 
-
+rollbar.log("hello world")
 app.get('/',function(req,res) {
+
   res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 

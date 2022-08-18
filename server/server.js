@@ -5,7 +5,7 @@ require('dotenv').config()
 
 var Rollbar = require("rollbar");
 var rollbar = new Rollbar({
-  accessToken: process.env.ROLLBAR_TOKEN,
+  accessToken: 'f6f85acdb4314464a4c06cb1f9b83318',
   captureUncaught: true,
   captureUnhandledRejections: true
 });
@@ -18,9 +18,9 @@ app.use(express.json())
 app.use(express.static('client'))
 app.use(`/css`, express.static(path.join(__dirname, '../client/styles.css')))
 
-rollbar.log("hello world")
-app.get('/',function(req,res) {
 
+app.get('/',function(req,res) {
+  rollbar.log("hello world")
   res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 

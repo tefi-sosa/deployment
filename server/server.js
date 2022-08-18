@@ -16,19 +16,17 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.static('client'))
-app.use(`/css`, express.static(path.join(__dirname, '../client/styles.css')))
-
 
 app.get('/',function(req,res) {
-  rollbar.log("hello world")
   res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-app.get('/',function(req,res) {
+app.get('/css',function(req,res) {
+  rollbar.log("Testing")
   res.sendFile(path.join(__dirname, '../client/styles.css'));
 });
 
-app.get('/',function(req,res) {
+app.get('/js',function(req,res) {
   res.sendFile(path.join(__dirname, '../client/main.js'));
 });
 
